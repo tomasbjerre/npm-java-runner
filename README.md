@@ -7,10 +7,6 @@
 
 So that you can create a command line tool with Java and distribute it as an NPM package.
 
-Example:
-
-- [Git Changelog Command Line](https://github.com/tomasbjerre/git-changelog-command-line)
-
 ## Usage
 
 Create an `index.js` with:
