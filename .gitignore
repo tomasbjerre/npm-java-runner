@@ -1,8 +1,3 @@
 node_modules
-*.schema.json
-examples/*/actual
-/lib/*
-/lib/.*
+lib/*
 !.gitkeep
-jest_html_reporters.html
-*.html
