@@ -19,7 +19,7 @@ Create *package.json* with:
 {
   "name": "NAME",
   "runnable-jar-regexp":".*build/libs/.*\\d+\\.\\d+\\.\\d+\\.jar",
-  "files":"build/libs",
+  "files": ["build/libs"],
   "bin": "./index.js",
   "dependencies": {
     "npm-java-runner": "a.b.c"
