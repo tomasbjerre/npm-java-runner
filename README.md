@@ -5,16 +5,18 @@
 - Include configured `jar` inside the NPM-package.
 - Provide a layer, delegating all arguments, so that the `jar` is runnable with `npx`.
 
+So that you can create a command line tool with Java and distribute it as an NPM package.
+
 ## Usage
 
-Create an _index.js_ with:
+Create an `index.js` with:
 
 ```js
 #!/usr/bin/env node
 require('npm-java-runner/lib/index').run(__dirname);
 ```
 
-Create _package.json_ with:
+Create `package.json` with:
 
 ```json
 {
@@ -28,8 +30,8 @@ Create _package.json_ with:
 }
 ```
 
-If you release this, you will be able to run your jar with:
+If you release this (`npm publish`), you will be able to run your jar with:
 
 ```sh
-npx NAME
+npx NAME --whatever arguments
 ```
