@@ -2,19 +2,43 @@
 
 import path from 'path';
 import fs from 'fs';
-import child_process from 'child_process';
+import { exec } from 'shelljs';
 
-function execute(command: string) {
-  child_process.exec(command, function (error, stdout, stderr) {
-    if (error) {
-      console.error(error);
+function executeJar(jarFile: string) {
+  var userArgs = process.argv.slice(2);
+  const javaArgs: string[] = [];
+  const programArgs: string[] = [];
+
+  userArgs.forEach(function (arg) {
+    if (arg.startsWith('-D') || arg.startsWith('-X') || arg.startsWith('-P')) {
+      javaArgs.push(arg);
+    } else {
+      programArgs.push(arg);
     }
-    if (stderr) {
-      console.error(stderr);
+  });
+
+  let cmd = 'java';
+  javaArgs.forEach(function (arg) {
+    cmd += ` ${arg}`;
+  });
+  cmd += ` -jar ${jarFile} `;
+  programArgs.forEach(function (arg) {
+    cmd += ` ${arg}`;
+  });
+  var child = exec(cmd, { async: true });
+  process.stdin.setEncoding('utf8');
+
+  process.stdin.on('readable', () => {
+    var chunk = process.stdin.read();
+    if (chunk === null) {
+      return;
     }
-    if (stdout) {
-      console.log(stdout);
-    }
+    try {
+      child.stdin.write(chunk);
+    } catch (e) {}
+  });
+  child.on('close', function (code) {
+    process.exit(code);
   });
 }
 
@@ -54,5 +78,5 @@ export function run(userPath: string) {
 
   const runnableJar = resolveRunnableJar(runnableJarRegexp, userPath);
 
-  execute(`java -jar ${runnableJar}`);
+  executeJar(runnableJar);
 }
