@@ -20,7 +20,7 @@ function execute(command: string) {
 
 function search(dir: string, regex: string): string[] {
   let result: string[] = [];
-  for (let file in fs.readdirSync(dir)) {
+  for (let file of fs.readdirSync(dir)) {
     const filePath = path.join(dir, file);
     const stat = fs.statSync(filePath);
     if (stat.isFile() && new RegExp(regex).test(filePath)) {
