@@ -1,6 +1,6 @@
 {
   "name": "npm-java-runner",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "scripts": {
     "build": "npm run format && tsc -p .",
     "format": "prettier --write .",
