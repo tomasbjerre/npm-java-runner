@@ -1,6 +1,6 @@
 {
     "name": "npm-java-runner",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "scripts": {
         "release": "npm version patch && npm publish && git push --follow-tags"
     },
