@@ -1,0 +1,24 @@
+{
+    "name": "npm-java-runner",
+    "version": "0.0.1",
+    "scripts": {
+      "release": "npm version patch && npm publish && git push --follow-tags"
+    },
+    "devDependencies": {
+    },
+    "dependencies": {
+    },
+    "homepage": "https://github.com/tomasbjerre/npm-java-runner",
+    "repository": "git@github.com:tomasbjerre/npm-java-runner.git",
+    "files": [
+      "lib"
+    ],
+    "author": "Tomas Bjerre",
+    "keywords": [
+        "java",
+        "JRE",
+        "runner",
+        "command"
+    ],
+    "license": "Apache 2"
+  }
