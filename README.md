@@ -10,7 +10,7 @@ Create an *index.js* with:
 
 ```js
 #!/usr/bin/env node
-require("npm-java-runner/lib/index.lib").run(__dirname);
+require("npm-java-runner/lib/index").run(__dirname);
 ```
 
 Create *package.json* with:
