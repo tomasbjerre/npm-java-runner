@@ -1,6 +1,7 @@
 # NPM Java Runner
 
-- It will make sure you have JRE installed, or else help download it.
+[![NPM](https://img.shields.io/npm/v/npm-java-runner.svg?style=flat-square)](https://www.npmjs.com/package/npm-java-runner)
+
 - Include configured `jar` inside the NPM-package.
 - Provide a layer, delegating all arguments, so that the `jar` is runnable with `npx`.
 
