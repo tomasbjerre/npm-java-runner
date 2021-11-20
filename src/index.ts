@@ -46,9 +46,10 @@ function search(dir: string, regex: string): string[] {
   let result: string[] = [];
   for (let file of fs.readdirSync(dir)) {
     const filePath = path.join(dir, file);
+    const filePathString = filePath.replace(/\\/g, '/');
     const stat = fs.statSync(filePath);
-    if (stat.isFile() && new RegExp(regex).test(filePath)) {
-      result.push(filePath);
+    if (stat.isFile() && new RegExp(regex).test(filePathString)) {
+      result.push(filePathString);
     } else if (stat.isDirectory()) {
       result = result.concat(search(filePath, regex));
     }
@@ -60,6 +61,9 @@ function resolveRunnableJar(regexp: string, path: string) {
   const found = search(path, regexp);
   if (found.length > 1) {
     throw `Multiple matches of ${regexp} in ${path} ${JSON.stringify(found)}`;
+  }
+  if (found.length == 0) {
+    throw `No matches of ${regexp} in ${path}`;
   }
   return found[0];
 }
