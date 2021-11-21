@@ -6,7 +6,9 @@ import fs from 'fs';
 const { spawn } = require('child_process');
 
 function executeJar(jarFile: string) {
-  var userArgs = process.argv.slice(2).map((it) => it.replace(/\\n/, '\n'));
+  var userArgs = process.argv
+    .slice(2)
+    .map((it) => it.replace(/(?:\\r\\n|\\r|\\n)/g, '\n'));
   var command = spawn('java', ['-jar', jarFile, ...userArgs]);
   command.stdout.pipe(process.stdout);
   command.stderr.pipe(process.stderr);
