@@ -7,14 +7,12 @@
     "release": "npm run build && npm version patch && npm publish && git push --follow-tags"
   },
   "dependencies": {
-    "path": "^0.12.7",
-    "shelljs": "^0.8.4"
+    "path": "^0.12.7"
   },
   "devDependencies": {
     "@types/glob": "^7.1.1",
     "@types/jest": "^25.2.1",
     "@types/node": "^10.0.0",
-    "@types/shelljs": "^0.8.9",
     "prettier": "^2.0.5",
     "ts-node": "^8.9.0",
     "typescript": "^3.8.3"

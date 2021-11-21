@@ -2,42 +2,15 @@
 
 import path from 'path';
 import fs from 'fs';
-import { exec } from 'shelljs';
+
+const { spawn } = require('child_process');
 
 function executeJar(jarFile: string) {
   var userArgs = process.argv.slice(2);
-  const javaArgs: string[] = [];
-  const programArgs: string[] = [];
-
-  userArgs.forEach(function (arg) {
-    if (arg.startsWith('-D') || arg.startsWith('-X') || arg.startsWith('-P')) {
-      javaArgs.push(arg);
-    } else {
-      programArgs.push(arg);
-    }
-  });
-
-  let cmd = 'java';
-  javaArgs.forEach(function (arg) {
-    cmd += ` ${arg}`;
-  });
-  cmd += ` -jar ${jarFile} `;
-  programArgs.forEach(function (arg) {
-    cmd += ` ${arg}`;
-  });
-  var child = exec(cmd, { async: true });
-  process.stdin.setEncoding('utf8');
-
-  process.stdin.on('readable', () => {
-    var chunk = process.stdin.read();
-    if (chunk === null) {
-      return;
-    }
-    try {
-      child.stdin.write(chunk);
-    } catch (e) {}
-  });
-  child.on('close', function (code) {
+  var command = spawn('java', ['-jar', jarFile, ...userArgs]);
+  command.stdout.pipe(process.stdout);
+  command.stderr.pipe(process.stderr);
+  command.on('close', (code: number) => {
     process.exit(code);
   });
 }
