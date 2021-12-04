@@ -35,3 +35,7 @@ If you release this (`npm publish`), you will be able to run your jar with:
 ```sh
 npx NAME --whatever arguments
 ```
+
+## Examples
+
+- [Wiremock](https://github.com/tomasbjerre/wiremock-npm)
