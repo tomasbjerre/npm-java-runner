@@ -51,7 +51,7 @@ export function run(userPath: string) {
   const runnableJarRegexp = packageJsonOfUser[runnableJarRegexpAttr];
   if (!runnableJarRegexp) {
     throw `Did not find ${runnableJarRegexpAttr} within ${JSON.stringify(
-      packageJsonOfUser
+      packageJsonOfUser,
     )}`;
   }
 
